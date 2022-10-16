@@ -8,14 +8,18 @@
 </head>
 <body>
     <script>
-        const add = (a, b) => a + b;
+        const add = (num1, num2) => num1 + num2;
 
-        const subtract = (a, b) => a - b;
+        const subtract = (num1, num2) => num1 - num2;
 
-        const multiply = (a, b) => a * b;
+        const multiply = (num1, num2) => num1 * num2;
 
-        const divide = (a, b) => a / b;
+        const divide = (num1, num2) => num1 / num2;
         
+        function operate(opr, num1, num2) {
+            return opr(num1, num2);
+        }
+
     </script>
 </body>
 </html>
