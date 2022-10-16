@@ -34,3 +34,8 @@ body {
     display: flex;
     /* gap: 2px; */
 }
+
+#button{
+    display: flex;
+    justify-content: center;
+}

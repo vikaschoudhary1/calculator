@@ -13,34 +13,34 @@
             2564
         </div>
         <div>
-            <div data-value="" class="button">AC</div>
+            <div data-value="" class="button clear">AC</div>
             <div data-value="" class="button"></div>
             <div data-value="" class="button"></div>
-            <div data-value="" class="button">/</div>
+            <div data-value="divide" class="button">/</div>
         </div>
         <div>
             <div data-value="1" class="button number">1</div>
             <div data-value="2" class="button number">2</div>
             <div data-value="3" class="button number">3</div>
-            <div data-value="*" class="button operator">*</div>
+            <div data-value="multiply" class="button operator">*</div>
         </div>
         <div>
             <div data-value="4" class="button number">4</div>
             <div data-value="5" class="button number">5</div>
             <div data-value="6" class="button number">6</div>
-            <div data-value="-" class="button operator">-</div>
+            <div data-value="subtract" class="button operator">-</div>
         </div>
         <div>
             <div data-value="7" class="button number">7</div>
             <div data-value="8" class="button number">8</div>
             <div data-value="9" class="button number">9</div>
-            <div data-value="+" class="button operator">+</div>
+            <div data-value="add" class="button operator">+</div>
         </div>
         <div>
             <div data-value="" class="button"></div>
             <div data-value="0" class="button number">0</div>
             <div data-value="" class="button"></div>
-            <div data-value="=" class="button operator">=</div>
+            <div data-value="=" class="button equals">=</div>
         </div>
     </div>
 
@@ -55,14 +55,16 @@
         const divide = (num1, num2) => num1 / num2;
         
         function operate(opr, num1, num2) {
-            return opr(num1, num2);
+            return eval(opr)(num1, num2);
         };
 
         let displayValue = "";
         let number1 = 0;
         let number2 = 0;
         let operation = '';
-
+        const updateDisplay = () => {
+            document.querySelector('#display').textContent = displayValue;
+        }
 
         const buttons = document.querySelectorAll('.number');
 
@@ -70,17 +72,28 @@
             button.addEventListener('click', () => {
                 displayValue += button.dataset.value;
                 console.log(button.dataset.value);
-                document.querySelector('#display').textContent = displayValue;
+                updateDisplay();
             });
         });
 
         const operators = document.querySelectorAll('.operator');
         operators.forEach((operator) => {
             operator.addEventListener('click', () => {
-                operation = operator.dataset.value;
                 number1 = +displayValue;
+                operation = operator.dataset.value;
                 displayValue = '';
             })
+        });
+
+        const equals = document.querySelector('.equals');
+        equals.addEventListener('click', () => {
+            displayValue = operate(operation, number1, +displayValue);
+            updateDisplay();
+        });
+
+        document.querySelector('.clear').addEventListener('click', () => {
+            displayValue = '';
+            updateDisplay();
         })
 
     </script>
