@@ -10,37 +10,37 @@
 <body>
     <div id="container">
         <div id="display">
-
+            2564
         </div>
         <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div>/</div>
+            <div data-value="" class="button">AC</div>
+            <div data-value="" class="button"></div>
+            <div data-value="" class="button"></div>
+            <div data-value="" class="button">/</div>
         </div>
         <div>
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>*</div>
+            <div data-value="1" class="button number">1</div>
+            <div data-value="2" class="button number">2</div>
+            <div data-value="3" class="button number">3</div>
+            <div data-value="*" class="button operator">*</div>
         </div>
         <div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div>-</div>
+            <div data-value="4" class="button number">4</div>
+            <div data-value="5" class="button number">5</div>
+            <div data-value="6" class="button number">6</div>
+            <div data-value="-" class="button operator">-</div>
         </div>
         <div>
-            <div>7</div>
-            <div>8</div>
-            <div>9</div>
-            <div>+</div>
+            <div data-value="7" class="button number">7</div>
+            <div data-value="8" class="button number">8</div>
+            <div data-value="9" class="button number">9</div>
+            <div data-value="+" class="button operator">+</div>
         </div>
         <div>
-            <div></div>
-            <div>0</div>
-            <div></div>
-            <div>=</div>
+            <div data-value="" class="button"></div>
+            <div data-value="0" class="button number">0</div>
+            <div data-value="" class="button"></div>
+            <div data-value="=" class="button operator">=</div>
         </div>
     </div>
 
@@ -56,7 +56,32 @@
         
         function operate(opr, num1, num2) {
             return opr(num1, num2);
-        }
+        };
+
+        let displayValue = "";
+        let number1 = 0;
+        let number2 = 0;
+        let operation = '';
+
+
+        const buttons = document.querySelectorAll('.number');
+
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                displayValue += button.dataset.value;
+                console.log(button.dataset.value);
+                document.querySelector('#display').textContent = displayValue;
+            });
+        });
+
+        const operators = document.querySelectorAll('.operator');
+        operators.forEach((operator) => {
+            operator.addEventListener('click', () => {
+                operation = operator.dataset.value;
+                number1 = +displayValue;
+                displayValue = '';
+            })
+        })
 
     </script>
 </body>
