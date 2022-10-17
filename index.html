@@ -105,7 +105,8 @@
                     return
                 };
 
-                if(currentTotal !== 0){
+                // currentOperation !== is to check if the equals sign has been pressed before this
+                if(currentTotal !== 0 && currentOperation !== ''){      
                     currentTotal = operate(currentOperation, currentTotal, +tempValue);
                     if (currentTotal === Infinity || currentTotal === Infinity) {
                         updateDisplay('Boy... Not today!');
@@ -130,10 +131,12 @@
             } else{ 
                 updateDisplay(Number(currentTotal.toFixed(6)));
             };
-            tempValue = ''; 
+            tempValue = '';
+            currentOperation = ''; 
             };
         });
 
+        // NOT COMPLETE!
         const dot = document.querySelector('#dot');
         dot.addEventListener('click', () => {
             tempValue += '.'
