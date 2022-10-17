@@ -1,5 +1,6 @@
 
 // Version 1.0 code, too messy so starting over in html script tag
+// this style sheet is not used in the calculator logic
 
 const add = (num1, num2) => num1 + num2;
 

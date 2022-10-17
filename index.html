@@ -37,7 +37,7 @@
             <div data-value="add" class="button operator">+</div>
         </div>
         <div>
-            <div data-value="" class="button"></div>
+            <div data-value="dot" class="button " id="dot">.</div>
             <div data-value="0" class="button number">0</div>
             <div data-value="" class="button"></div>
             <div data-value="=" class="button equals">=</div>
@@ -107,7 +107,12 @@
 
                 if(currentTotal !== 0){
                     currentTotal = operate(currentOperation, currentTotal, +tempValue);
-                    updateDisplay(currentTotal);
+                    if (currentTotal === Infinity || currentTotal === Infinity) {
+                        updateDisplay('Boy... Not today!');
+                        currentTotal = 0;
+                    } else{ 
+                        updateDisplay(Number(currentTotal.toFixed(6)));
+                    };
                 } else {currentTotal = +tempValue;}     // for first operation 
 
                 currentOperation = operator.dataset.value;
@@ -119,7 +124,12 @@
         equals.addEventListener('click', () => {
             if(currentTotal !== 0){
             currentTotal = operate(currentOperation, currentTotal, +tempValue);
-            updateDisplay(currentTotal);
+            if (currentTotal === Infinity || currentTotal === Infinity) {
+                updateDisplay('Boy... Not today!');
+                currentTotal = 0;
+            } else{ 
+                updateDisplay(Number(currentTotal.toFixed(6)));
+            };
             tempValue = ''; 
             };
         });
@@ -141,8 +151,6 @@
                 button.classList.remove('pressed');
             })
         });
-
-
 
     </script>
 </body>
