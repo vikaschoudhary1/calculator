@@ -59,6 +59,13 @@
             document.querySelector('#display').textContent = value;
         };
 
+        document.querySelector('.clear').addEventListener('click', () => {
+            tempValue = '';
+            currentOperation = '';
+            currentTotal = 0;
+            updateDisplay(tempValue);
+        });
+
         function operate(operator, a, b) {
                 console.log(operator);
                 switch (operator) {
