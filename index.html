@@ -59,11 +59,15 @@
             document.querySelector('#display').textContent = value;
         };
 
-        document.querySelector('.clear').addEventListener('click', () => {
+        const clearDisplay = () => {
             tempValue = '';
             currentOperation = '';
             currentTotal = 0;
             updateDisplay(tempValue);
+        }
+
+        document.querySelector('.clear').addEventListener('click', () => {
+            clearDisplay();
         });
 
         function operate(operator, a, b) {
@@ -79,7 +83,7 @@
                         return multiply (a, b);
                         break;
                     case ('divide'):
-                        return divide (a, b);
+                        return divide(a, b);
                         break;
                 };
             };
@@ -95,17 +99,30 @@
         const operators = document.querySelectorAll('.operator');
         operators.forEach((operator) => {
             operator.addEventListener('click', () => {
+                
+                // if user is changing operators without pressing numbers
+                if(tempValue === ''){
+                    currentOperation = operator.dataset.value;
+                    return
+                };
+
+                if(currentTotal !== 0){
+                    currentTotal = operate(currentOperation, currentTotal, +tempValue);
+                    updateDisplay(currentTotal);
+                } else {currentTotal = +tempValue;}     // for first operation 
+
                 currentOperation = operator.dataset.value;
-                currentTotal = +tempValue;
                 tempValue = '';
             });
         });
 
         const equals = document.querySelector('.equals');
         equals.addEventListener('click', () => {
+            if(currentTotal !== 0){
             currentTotal = operate(currentOperation, currentTotal, +tempValue);
             updateDisplay(currentTotal);
             tempValue = ''; 
+            };
         });
 
     </script>
