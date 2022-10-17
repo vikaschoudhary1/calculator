@@ -10,11 +10,11 @@
 <body>
     <div id="container">
         <div id="display">
-            2564
+            Hello!
         </div>
         <div>
             <div data-value="" class="button clear">AC</div>
-            <div data-value="" class="button"></div>
+            <div data-value="" class="button backspace">del</div>
             <div data-value="" class="button"></div>
             <div data-value="divide" class="button operator">/</div>
         </div>
@@ -134,6 +134,12 @@
             };
         });
 
+        const dot = document.querySelector('#dot');
+        dot.addEventListener('click', () => {
+            tempValue += '.'
+            updateDisplay(tempValue);
+        });
+
         document.querySelectorAll('.button').forEach((button) => {
             button.addEventListener('mouseover', () => {
                 button.classList.add('hover');
@@ -151,6 +157,16 @@
                 button.classList.remove('pressed');
             })
         });
+
+        const backspace = document.querySelector('.backspace')
+        backspace.addEventListener('click', () => {
+            if(tempValue === ''){
+                return;
+            } else{
+                tempValue = tempValue.substr(0,tempValue.length-1);
+                updateDisplay(tempValue);
+            }
+        })
 
     </script>
 </body>

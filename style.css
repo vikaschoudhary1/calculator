@@ -10,11 +10,6 @@ div > div > div {
     margin: 2px;
 }
 
-body > div { 
-    /* display: flex; */
-    
-}
-
 body {
     display: flex;
     justify-content: center;
@@ -23,21 +18,26 @@ body {
     /* flex-wrap: wrap;
     width: 200px; */
     height: 500px;
+    background-color: rgb(242, 242, 227);
 }
 #display {
     min-width: 180px;
-    height: 60px;
-    background-color: aqua;
+    height: 30px;
+    background-color: rgb(192, 255, 255);
     justify-content: flex-end;
-    align-items: flex-end;
+    align-items: center;
     padding: 10px;
     font-size: large;
-    border-radius: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 #container {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    background-color: rgb(119, 166, 252);
+    border-radius: 10px;
 }
 
 #container > div {
@@ -53,7 +53,7 @@ body {
 }
 
 .pressed{
-    background-color: rgb(90, 26, 150);
+    background-color: rgb(205, 152, 255);
 }
 
 .hover{
