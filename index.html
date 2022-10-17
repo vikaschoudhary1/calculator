@@ -16,7 +16,7 @@
             <div data-value="" class="button clear">AC</div>
             <div data-value="" class="button"></div>
             <div data-value="" class="button"></div>
-            <div data-value="divide" class="button">/</div>
+            <div data-value="divide" class="button operator">/</div>
         </div>
         <div>
             <div data-value="1" class="button number">1</div>
@@ -46,55 +46,60 @@
 
 
     <script>
-        const add = (num1, num2) => num1 + num2;
 
-        const subtract = (num1, num2) => num1 - num2;
+        const add = (a,b) => a + b;
+        const subtract = (a,b) => a - b;
+        const multiply = (a,b) => a * b;
+        const divide = (a,b) => a / b;
+        let tempValue = '';
+        let currentOperation = '';
+        let currentTotal = 0;
 
-        const multiply = (num1, num2) => num1 * num2;
-
-        const divide = (num1, num2) => num1 / num2;
-        
-        function operate(opr, num1, num2) {
-            return eval(opr)(num1, num2);
+        const updateDisplay = (value) => {
+            document.querySelector('#display').textContent = value;
         };
 
-        let displayValue = "";
-        let number1 = 0;
-        let number2 = 0;
-        let operation = '';
-        const updateDisplay = () => {
-            document.querySelector('#display').textContent = displayValue;
-        }
+        function operate(operator, a, b) {
+                console.log(operator);
+                switch (operator) {
+                    case 'add':
+                        return add (a, b);
+                        break;
+                    case ('subtract'):
+                        return subtract (a, b);
+                        break;
+                    case ('multiply'):
+                        return multiply (a, b);
+                        break;
+                    case ('divide'):
+                        return divide (a, b);
+                        break;
+                };
+            };
 
         const buttons = document.querySelectorAll('.number');
-
         buttons.forEach((button) => {
             button.addEventListener('click', () => {
-                displayValue += button.dataset.value;
-                console.log(button.dataset.value);
-                updateDisplay();
+                tempValue += button.dataset.value;
+                updateDisplay(tempValue);
             });
         });
 
         const operators = document.querySelectorAll('.operator');
         operators.forEach((operator) => {
             operator.addEventListener('click', () => {
-                number1 = +displayValue;
-                operation = operator.dataset.value;
-                displayValue = '';
-            })
+                currentOperation = operator.dataset.value;
+                currentTotal = +tempValue;
+                tempValue = '';
+            });
         });
 
         const equals = document.querySelector('.equals');
         equals.addEventListener('click', () => {
-            displayValue = operate(operation, number1, +displayValue);
-            updateDisplay();
+            currentTotal = operate(currentOperation, currentTotal, +tempValue);
+            updateDisplay(currentTotal);
+            tempValue = ''; 
         });
-
-        document.querySelector('.clear').addEventListener('click', () => {
-            displayValue = '';
-            updateDisplay();
-        })
 
     </script>
 </body>

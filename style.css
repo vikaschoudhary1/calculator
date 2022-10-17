@@ -39,3 +39,7 @@ body {
     display: flex;
     justify-content: center;
 }
+
+.pressed{
+    background-color: rgb(252, 255, 103);
+}
