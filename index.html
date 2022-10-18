@@ -39,7 +39,6 @@
         <div>
             <div data-value="dot" class="button " id="dot">.</div>
             <div data-value="0" class="button number">0</div>
-
             <div data-value="=" class="button equals">=</div>
         </div>
     </div>
@@ -54,6 +53,7 @@
         let tempValue = '';
         let currentOperation = '';
         let currentTotal = 0;
+        let dotButtonUsed = false;
 
         const updateDisplay = (value) => {
             document.querySelector('#display').textContent = value;
@@ -118,6 +118,7 @@
 
                 currentOperation = operator.dataset.value;
                 tempValue = '';
+                dotButtonUsed = false;
             });
         });
 
@@ -133,14 +134,18 @@
             };
             tempValue = '';
             currentOperation = ''; 
+            dotButtonUsed = false;
             };
         });
 
         // NOT COMPLETE!
         const dot = document.querySelector('#dot');
         dot.addEventListener('click', () => {
-            tempValue += '.'
-            updateDisplay(tempValue);
+            if(tempValue !== '' && dotButtonUsed === false){
+                tempValue += '.';
+                updateDisplay(tempValue);
+                dotButtonUsed = true;
+            };
         });
 
         document.querySelectorAll('.button').forEach((button) => {
