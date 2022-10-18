@@ -15,7 +15,7 @@
         <div>
             <div data-value="" class="button clear">AC</div>
             <div data-value="" class="button backspace">del</div>
-            <div data-value="" class="button"></div>
+            <div data-value="" class="button" id="reverseSign">( - )</div>
             <div data-value="divide" class="button operator">/</div>
         </div>
         <div>
@@ -138,7 +138,6 @@
             };
         });
 
-        // NOT COMPLETE!
         const dot = document.querySelector('#dot');
         dot.addEventListener('click', () => {
             if(tempValue !== '' && dotButtonUsed === false){
@@ -147,6 +146,14 @@
                 dotButtonUsed = true;
             };
         });
+
+        const reverseSign = document.querySelector('#reverseSign');
+        reverseSign.addEventListener('click', () => {
+            if(tempValue !== ''){
+                tempValue = +tempValue * -1;
+                updateDisplay(tempValue);
+            }
+        }) 
 
         document.querySelectorAll('.button').forEach((button) => {
             button.addEventListener('mouseover', () => {
