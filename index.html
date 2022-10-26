@@ -102,6 +102,7 @@
                 // if user is changing operators without pressing numbers
                 if(tempValue === ''){
                     currentOperation = operator.dataset.value;
+                    updateDisplay(currentTotal + operator.innerHTML);
                     return
                 };
 
@@ -117,6 +118,7 @@
                 } else {currentTotal = +tempValue;}     // for first operation 
 
                 currentOperation = operator.dataset.value;
+                updateDisplay(tempValue + operator.innerHTML);
                 tempValue = '';
                 dotButtonUsed = false;
             });
